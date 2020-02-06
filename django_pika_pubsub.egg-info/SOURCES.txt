@@ -1,0 +1,11 @@
+LICENSE
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+django_pika_pubsub.egg-info/PKG-INFO
+django_pika_pubsub.egg-info/SOURCES.txt
+django_pika_pubsub.egg-info/dependency_links.txt
+django_pika_pubsub.egg-info/requires.txt
+django_pika_pubsub.egg-info/top_level.txt
+migrations/__init__.py
