@@ -1,6 +1,6 @@
 Metadata-Version: 1.1
 Name: django-pika-pubsub
-Version: 0.4
+Version: 0.5
 Summary: A Django app to publish and consume rmq-messages via Pika.
 Home-page: https://grafia.ink/
 Author: Bogdanov Dmitry
