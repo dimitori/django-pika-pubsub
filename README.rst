@@ -3,7 +3,7 @@ Django-pika-pubsub
 
 Django-pika-pubsub is a simple Django app to publish and consume rmq-messages via Pika.
 
-Using default rmq exchange.
+Using **default rmq exchange**.
 
 Quick start
 -----------
@@ -24,7 +24,7 @@ Quick start
 		'RABBITMQ_PORT': int(os.getenv('RABBITMQ_PORT')),
 	}
 
-3. Do something similar for producing messages::
+3. Do something similar for **producing** messages::
 
 	from django_pika_pubsub import Producer
 	...
@@ -34,7 +34,7 @@ Quick start
 		routing_key='order.sent.order_id.1.0.0'
 	)
 
-4. Do something similar for consuming messages::
+4. Do something similar for **consuming** messages::
 
 	consumer = MyConsumer.get_consumer()
 	consumer.consume(
