@@ -7,11 +7,12 @@ class Consumer:
         self.parameters = get_parameters(host, port, username, password)
         self.connection = None
 
-    def consume(self, exchange, queue_name, routing_key, callback):
+    def consume(self, routing_key, callback):
+        queue_name = routing_key
         if not self.connection:
             self._init_connection()
         self._init_channel()
-        queue_name = self._init_queue(exchange, queue_name, routing_key)
+        self._init_queue(queue_name)
         self.channel.basic_qos(prefetch_count=1)
         self.channel.basic_consume(
             queue=queue_name,
@@ -26,15 +27,9 @@ class Consumer:
     def _init_channel(self):
         self.channel = self.connection.channel()
 
-    def _init_queue(self, exchange, queue_name, routing_key):
-        """declare and bind queue"""
-        result = self.channel.queue_declare(queue=queue_name, durable=True)
-        self.channel.queue_bind(
-            exchange=exchange,
-            queue=result.method.queue,
-            routing_key=routing_key
-        )
-        return result.method.queue
+    def _init_queue(self, queue_name):
+        """declare a queue"""
+        self.channel.queue_declare(queue=queue_name, durable=True)
 
     @classmethod
     def get_consumer(cls):

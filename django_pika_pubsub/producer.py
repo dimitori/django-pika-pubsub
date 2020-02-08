@@ -8,13 +8,12 @@ class Producer:
         self.parameters = get_parameters(host, port, username, password)
         self.exchanges = []
 
-    def produce(self, exchange, body, routing_key=''):
+    def produce(self, body, routing_key):
+        exchange = ''
+        queue = routing_key
         connection = pika.BlockingConnection(self.parameters)
         channel = connection.channel()
-        if exchange not in self.exchanges:
-            channel.exchange_declare(exchange=exchange, exchange_type='direct')
-            self.exchanges.append(exchange)
-
+        channel.queue_declare(queue=queue, durable=True)
         channel.basic_publish(
             exchange=exchange,
             routing_key=routing_key,
